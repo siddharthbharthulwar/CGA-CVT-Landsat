@@ -34,14 +34,15 @@ class BoundingBox:
 
 def split_into_patches(image, patch_size):
 
-    num_slices = int(image.shape[0] / patch_size)
+    num_vertical_slices = int(image.shape[0] / patch_size)
+    num_horizontal_slices = int(image.shape[1] / patch_size)
 
     boxes = []
     
 
-    for i in range(0, num_slices - 1):
+    for i in range(0, num_vertical_slices):
 
-        for j in range(0, num_slices - 1):
+        for j in range(0, num_horizontal_slices ):
 
             length0 = i * patch_size
             width0 = j * patch_size
@@ -56,7 +57,9 @@ def split_into_patches(image, patch_size):
     return boxes
 
 
+'''
 img = cv.imread('square.png', cv.IMREAD_GRAYSCALE)
+
 boxes = split_into_patches(img, 20)
 
 for box in boxes:
@@ -64,3 +67,4 @@ for box in boxes:
     plt.imshow(box.getImage())
     plt.title(str(box.getCoordinates()))
     plt.show()
+'''
